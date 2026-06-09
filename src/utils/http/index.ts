@@ -86,13 +86,28 @@ class PureHttp {
             PureHttp.isRefreshing = true;
             try {
               const userStore = useUserStore();
+              // 后端返回新的 JWT 字符串
               const res = await userStore.handRefreshToken({
                 refreshToken: data.refreshToken,
               });
-              const newToken = res.data.accessToken;
-              PureHttp.requests.forEach((cb) => cb(newToken));
+              const newJwt = res.data as unknown as string;
+              const { decodeJwt, setToken, setUserInfo } = await import("@/utils/auth");
+              const claims = decodeJwt(newJwt);
+              const tokenData = {
+                accessToken: newJwt,
+                expires: claims.exp * 1000,
+                refreshToken: claims.exp.toString(),
+              };
+              setToken(tokenData);
+              setUserInfo({
+                username: claims.sub,
+                roles: claims.roles || [],
+                refreshToken: tokenData.refreshToken,
+                expires: tokenData.expires,
+              });
+              PureHttp.requests.forEach((cb) => cb(newJwt));
               PureHttp.requests = [];
-              PureHttp.setAuthHeader(config, newToken);
+              PureHttp.setAuthHeader(config, newJwt);
             } finally {
               PureHttp.isRefreshing = false;
             }

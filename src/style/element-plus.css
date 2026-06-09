@@ -1,0 +1,43 @@
+/* ============================================================
+   Element Plus Theme Overrides
+   Maps Element Plus CSS variables to design system tokens
+   ============================================================ */
+:root {
+  --el-color-primary: var(--color-primary);
+  --el-color-primary-light-3: var(--color-primary-light);
+  --el-color-primary-light-5: var(--color-primary-light);
+  --el-color-primary-light-7: var(--color-primary-light);
+  --el-color-primary-light-8: var(--color-primary-light);
+  --el-color-primary-light-9: var(--color-primary-light);
+  --el-color-primary-dark-2: var(--color-primary-hover);
+  --el-color-danger: var(--color-destructive);
+  --el-color-success: var(--color-success);
+  --el-color-warning: var(--color-warning);
+
+  --el-bg-color: var(--color-bg);
+  --el-bg-color-overlay: var(--color-bg-elevated);
+  --el-bg-color-page: var(--color-bg);
+
+  --el-text-color-primary: var(--color-fg);
+  --el-text-color-regular: var(--color-fg-secondary);
+  --el-text-color-secondary: var(--color-fg-secondary);
+  --el-text-color-placeholder: var(--color-fg-tertiary);
+  --el-text-color-disabled: var(--color-fg-tertiary);
+
+  --el-border-color: var(--color-border);
+  --el-border-color-light: var(--color-border);
+  --el-border-color-lighter: var(--color-border);
+  --el-border-color-dark: var(--color-border-hover);
+
+  --el-border-radius-base: var(--radius-md);
+  --el-border-radius-small: var(--radius-sm);
+  --el-border-radius-round: var(--radius-full);
+
+  --el-font-size-base: 14px;
+  --el-font-size-small: 12px;
+  --el-font-size-large: 16px;
+
+  --el-box-shadow-light: var(--shadow-md);
+  --el-box-shadow: var(--shadow-lg);
+  --el-box-shadow-dark: var(--shadow-xl);
+}

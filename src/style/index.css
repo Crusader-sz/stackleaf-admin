@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Tailwind v4 — Class-based dark mode (manual toggle)
+   Overrides default prefers-color-scheme variant
+   ============================================================ */
+@variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   Tailwind Theme — maps CSS variables to utility classes
+   ============================================================ */
+@theme {
+  --font-display: "Fira Code", monospace;
+  --font-body: "Fira Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "Fira Code", Consolas, monospace;
+
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-light: var(--color-primary-light);
+  --color-accent: var(--color-accent);
+  --color-destructive: var(--color-destructive);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-bg: var(--color-bg);
+  --color-bg-elevated: var(--color-bg-elevated);
+  --color-fg: var(--color-fg);
+  --color-fg-secondary: var(--color-fg-secondary);
+  --color-fg-tertiary: var(--color-fg-tertiary);
+  --color-muted: var(--color-muted);
+  --color-muted-fg: var(--color-muted-fg);
+  --color-border: var(--color-border);
+  --color-border-hover: var(--color-border-hover);
+  --color-ring: var(--color-ring);
+}
