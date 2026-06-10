@@ -7,7 +7,7 @@ const publicRoutes: RouteRecordRaw[] = [
   {
     path: "/login",
     name: "Login",
-    component: () => import("@/pages/login.vue"),
+    component: () => import("@/views/login/index.vue"),
     meta: { title: "登录", public: true },
   },
 ];
@@ -22,13 +22,13 @@ const authRoutes: RouteRecordRaw[] = [
       {
         path: "dashboard",
         name: "Dashboard",
-        component: () => import("@/pages/dashboard.vue"),
+        component: () => import("@/views/dashboard/index.vue"),
         meta: { title: "首页" },
       },
       {
         path: "user",
         name: "UserList",
-        component: () => import("@/pages/user/index.vue"),
+        component: () => import("@/views/system/user/index.vue"),
         meta: { title: "用户管理" },
       },
     ],
@@ -40,13 +40,13 @@ const errorRoutes: RouteRecordRaw[] = [
   {
     path: "/403",
     name: "403",
-    component: () => import("@/pages/403.vue"),
+    component: () => import("@/views/error/403.vue"),
     meta: { title: "403", public: true },
   },
   {
     path: "/404",
     name: "404",
-    component: () => import("@/pages/404.vue"),
+    component: () => import("@/views/error/404.vue"),
     meta: { title: "404", public: true },
   },
   {

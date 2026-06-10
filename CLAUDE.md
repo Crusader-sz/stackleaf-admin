@@ -43,10 +43,20 @@ src/
 │   └── ReDialog/            # Reusable dialog (Element Plus wrapper)
 ├── layouts/
 │   └── index.vue            # App shell: el-aside sidebar + el-header + el-main(router-view)
-└── pages/
-    ├── login.vue            # Login page: centered card, form validation, theme toggle
-    ├── dashboard.vue        # Home page (placeholder)
-    ├── 403.vue / 404.vue    # Error pages
+└── views/                   # Page views organised by business module
+    ├── login/
+    │   └── index.vue        # Login page: centered card, form validation, theme toggle
+    ├── dashboard/
+    │   └── index.vue        # Home page (placeholder)
+    ├── system/
+    │   └── user/            # User management
+    │       ├── index.vue    # User list (table + search + pagination)
+    │       ├── types.ts     # User VO, form data, enums
+    │       └── components/
+    │           └── UserDialog.vue  # Add/edit user dialog
+    └── error/
+        ├── 403.vue          # Forbidden page
+        └── 404.vue          # Not found page
 ```
 
 ## Development Workflow
