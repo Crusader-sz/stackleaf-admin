@@ -33,9 +33,9 @@ async function handleLogout() {
         >
           StackLeaf
         </h1>
-        <span v-show="isCollapse" class="font-[--font-heading] text-base font-bold text-white"
-          >S</span
-        >
+        <span v-show="isCollapse" class="font-[--font-heading] text-base font-bold text-white">
+          S
+        </span>
       </div>
 
       <el-menu
@@ -49,8 +49,8 @@ async function handleLogout() {
         class="border-r-0"
       >
         <el-menu-item index="/dashboard">
-          <el-icon
-            ><svg
+          <el-icon>
+            <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -60,15 +60,16 @@ async function handleLogout() {
               <rect x="3" y="3" width="7" height="7" />
               <rect x="14" y="3" width="7" height="7" />
               <rect x="14" y="14" width="7" height="7" />
-              <rect x="3" y="14" width="7" height="7" /></svg
-          ></el-icon>
+              <rect x="3" y="14" width="7" height="7" />
+            </svg>
+          </el-icon>
           <template #title>首页</template>
         </el-menu-item>
 
         <el-sub-menu index="/system">
           <template #title>
-            <el-icon
-              ><svg
+            <el-icon>
+              <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -78,13 +79,14 @@ async function handleLogout() {
                 <circle cx="12" cy="12" r="3" />
                 <path
                   d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
-                /></svg
-            ></el-icon>
+                />
+              </svg>
+            </el-icon>
             <span>系统管理</span>
           </template>
           <el-menu-item index="/user">
-            <el-icon
-              ><svg
+            <el-icon>
+              <svg
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -94,8 +96,9 @@ async function handleLogout() {
                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                 <circle cx="9" cy="7" r="4" />
                 <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg
-            ></el-icon>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </el-icon>
             <template #title>用户管理</template>
           </el-menu-item>
         </el-sub-menu>
