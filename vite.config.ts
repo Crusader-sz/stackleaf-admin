@@ -19,7 +19,12 @@ export default defineConfig({
           importStyle: "css",
         }),
       ],
-      dts: "src/auto-imports.d.ts",
+      dts: "./src/types/auto-imports.d.ts",
+      eslintrc: {
+        enabled: true,
+        filepath: "./.eslintrc-auto-import.json",
+        globalsPropValue: true,
+      },
     }),
 
     Components({
@@ -28,7 +33,7 @@ export default defineConfig({
           importStyle: "css",
         }),
       ],
-      dts: "src/components.d.ts",
+      dts: "./src/types/components.d.ts",
     }),
   ],
 

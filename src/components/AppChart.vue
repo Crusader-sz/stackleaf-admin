@@ -1,6 +1,4 @@
 <script setup lang="ts">
-/* global window, ResizeObserver */
-import { ref, onMounted, onUnmounted, watch, shallowRef } from "vue";
 import * as echarts from "echarts/core";
 import { CanvasRenderer } from "echarts/renderers";
 import {

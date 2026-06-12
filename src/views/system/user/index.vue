@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import UserDialog from "./components/UserDialog.vue";
 import type { UserVO, UserFormData } from "./types";
@@ -83,6 +83,20 @@ const pageSize = ref(10);
 const dialogVisible = ref(false);
 const editingUser = ref<UserVO | null>(null);
 
+// ── 响应式断点 ─────────────────────────────────────
+const MOBILE_BREAKPOINT = 768;
+const isMobile = ref(false);
+function onResize() {
+  isMobile.value = window.innerWidth < MOBILE_BREAKPOINT;
+}
+onMounted(() => {
+  onResize();
+  window.addEventListener("resize", onResize);
+});
+onUnmounted(() => {
+  window.removeEventListener("resize", onResize);
+});
+
 // ── 过滤后的列表 ─────────────────────────────────────
 const filteredList = computed(() => {
   const kw = keyword.value.trim().toLowerCase();
@@ -155,35 +169,42 @@ async function handleDelete(user: UserVO) {
 
     <!-- 搜索 -->
     <div class="mb-4">
-      <el-input v-model="keyword" placeholder="搜索用户名或昵称" clearable class="!w-64" />
+      <el-input
+        v-model="keyword"
+        placeholder="搜索用户名或昵称"
+        clearable
+        class="w-full sm:!w-64"
+      />
     </div>
 
-    <!-- 用户表格 -->
-    <el-table v-loading="false" :data="filteredList" stripe border class="dark:!bg-slate-800">
-      <el-table-column prop="id" label="ID" width="70" align="center" />
-      <el-table-column prop="username" label="用户名" min-width="110" />
-      <el-table-column prop="nickname" label="昵称" min-width="110" />
+    <!-- 用户表格（小屏横向滚动） -->
+    <div class="overflow-x-auto">
+      <el-table v-loading="false" :data="filteredList" stripe border class="dark:!bg-slate-800">
+        <el-table-column prop="id" label="ID" width="70" align="center" />
+        <el-table-column prop="username" label="用户名" min-width="110" />
+        <el-table-column prop="nickname" label="昵称" min-width="110" />
 
-      <!-- 角色列 — 用 el-tag 区分 -->
-      <el-table-column label="角色" width="110" align="center">
-        <template #default="{ row }">
-          <el-tag :type="row.role === 1 ? 'danger' : ''" size="small">
-            {{ ROLE_MAP[row.role as keyof typeof ROLE_MAP] }}
-          </el-tag>
-        </template>
-      </el-table-column>
+        <!-- 角色列 — 用 el-tag 区分 -->
+        <el-table-column label="角色" width="110" align="center">
+          <template #default="{ row }">
+            <el-tag :type="row.role === 1 ? 'danger' : ''" size="small">
+              {{ ROLE_MAP[row.role as keyof typeof ROLE_MAP] }}
+            </el-tag>
+          </template>
+        </el-table-column>
 
-      <el-table-column prop="createTime" label="注册时间" width="170" />
+        <el-table-column prop="createTime" label="注册时间" width="170" />
 
-      <!-- 操作列 -->
-      <el-table-column label="操作" width="160" align="center" fixed="right">
-        <template #default="{ row }">
-          <el-button type="primary" link size="small" @click="openEdit(row)">编辑</el-button>
-          <el-divider direction="vertical" />
-          <el-button type="danger" link size="small" @click="handleDelete(row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+        <!-- 操作列 -->
+        <el-table-column label="操作" width="160" align="center" fixed="right">
+          <template #default="{ row }">
+            <el-button type="primary" link size="small" @click="openEdit(row)">编辑</el-button>
+            <el-divider direction="vertical" />
+            <el-button type="danger" link size="small" @click="handleDelete(row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 
     <!-- 分页 -->
     <div class="flex justify-end mt-4">
@@ -192,7 +213,8 @@ async function handleDelete(user: UserVO) {
         v-model:page-size="pageSize"
         :total="filteredList.length"
         :page-sizes="[10, 20, 50]"
-        layout="total, sizes, prev, pager, next"
+        :layout="isMobile ? 'prev, pager, next' : 'total, sizes, prev, pager, next'"
+        :small="isMobile"
         background
       />
     </div>

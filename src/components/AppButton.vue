@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue";
-
 type ButtonVariant = "primary" | "secondary" | "destructive" | "ghost";
 type ButtonSize = "default" | "small";
 

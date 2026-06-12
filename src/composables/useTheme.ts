@@ -5,6 +5,7 @@ type ResolvedTheme = "light" | "dark";
 
 const STORAGE_KEY = "stackleaf-theme";
 
+// Init logic must stay in sync with FOUC script in index.html
 /** 用户选择的模式（全局单例） */
 const themeMode = ref<ThemeMode>(getInitialMode());
 

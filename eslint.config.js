@@ -3,6 +3,8 @@ import tseslint from "typescript-eslint";
 import pluginVue from "eslint-plugin-vue";
 import vueParser from "vue-eslint-parser";
 import eslintConfigPrettier from "eslint-config-prettier";
+import globals from "globals";
+import autoImportGlobals from "./.eslintrc-auto-import.json" with { type: "json" };
 
 const extraFileExtensions = [".vue"];
 
@@ -11,6 +13,11 @@ export default tseslint.config(
   ...tseslint.configs.recommended,
   ...pluginVue.configs["flat/recommended"],
   eslintConfigPrettier,
+  {
+    languageOptions: {
+      globals: { ...globals.browser, ...autoImportGlobals.globals },
+    },
+  },
   {
     files: ["**/*.ts"],
     languageOptions: {
@@ -43,6 +50,13 @@ export default tseslint.config(
     },
   },
   {
-    ignores: ["dist/**", "node_modules/**", "*.config.*", "auto-imports.d.ts", "components.d.ts"],
+    ignores: [
+      "dist/**",
+      "node_modules/**",
+      "*.config.*",
+      "auto-imports.d.ts",
+      "components.d.ts",
+      ".eslintrc-auto-import.json",
+    ],
   }
 );
